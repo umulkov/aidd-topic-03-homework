@@ -1,10 +1,22 @@
 # investing
 
+# Переменные окружения
+
+Перед запуском приложения задайте `DJANGO_SECRET_KEY`, `DJANGO_DEBUG`,
+`DJANGO_ALLOWED_HOSTS` и `TINKOFF_TOKEN`. Скопируйте `.env.example` в `.env`
+и замените примерные значения. Django автоматически не загружает `.env`:
+переменные должны быть экспортированы средой запуска.
+
 # PostgreSQL (Docker)
 docker-compose -f docker-compose.yml up
 
 # Tinkoff Invest API
-# TINKOFF_TOKEN указывается в config/settings.py
+# TINKOFF_TOKEN задаётся через окружение
+
+# Установка основных зависимостей и SDK
+python -m pip install -r requirements.txt
+# SDK требует недоступный в PyPI пакет tinkoff, поэтому ставится без metadata-зависимостей
+python -m pip install -r requirements-sdk.txt --no-deps
 
 # Первоначальная загрузка списка акций
 python manage.py add_shares

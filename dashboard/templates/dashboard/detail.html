@@ -20,9 +20,13 @@
     <div class="col3"></div>
     <div class="col3">
     <h5>Исторические данные: </h5>
- {% autoescape off %}
-  {{ plot_div }}
-  {% endautoescape %}
+    {% if plot_div %}
+        {% autoescape off %}
+            {{ plot_div }}
+        {% endautoescape %}
+    {% else %}
+        <p role="status">Исторический график временно недоступен. Проверьте подключение к API Tinkoff и попробуйте позже.</p>
+    {% endif %}
     </div>
     <div class="col3"></div>
     </div>

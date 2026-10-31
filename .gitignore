@@ -28,3 +28,11 @@ celeryd.pid
 *.log
 .pytest_cache/
 app.logs
+
+.venv*/
+*.sqlite3
+db_e2e.sqlite3
+app.logs
+__pycache__/
+*.pyc
+.env

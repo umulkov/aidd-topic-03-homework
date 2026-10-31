@@ -1,6 +1,6 @@
 {% extends "user/base.html" %}
 {% block content %}
-<form  action="{% url 'user:auth'%}" method="POST">
+<form  action="{% url 'user:login'%}" method="POST">
     {% csrf_token %}
     <h1 class="h3 mb-3 fw-normal">Войдите в профиль</h1>
 
@@ -19,4 +19,3 @@
     <a href="{% url 'user:registration' %}" class="w-100 btn btn-lg btn-outline-primary">Зарегистрироваться</a>
 </form>
  {% endblock %}
-

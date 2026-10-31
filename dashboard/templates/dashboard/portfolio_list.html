@@ -1,0 +1,30 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+<title>Инвестиционные портфели</title>
+{% endblock %}
+
+{% block content %}
+<h1>Мои портфели</h1>
+<p><a class="btn btn-primary" href="{% url 'dashboard:portfolio_create' %}">Создать портфель</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Текущая стоимость</th>
+            <th>P&amp;L</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for portfolio in portfolios %}
+        <tr>
+            <td><a href="{% url 'dashboard:portfolio_detail' portfolio.pk %}">{{ portfolio.name }}</a></td>
+            <td>{{ portfolio.total_value|floatformat:2 }}</td>
+            <td>{{ portfolio.pnl|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">Портфелей пока нет.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

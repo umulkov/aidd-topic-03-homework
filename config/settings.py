@@ -1,13 +1,19 @@
+import os
 import logging
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = ""
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "")
 
-DEBUG = True
+DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
 
-ALLOWED_HOSTS = []
+allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", "")
+ALLOWED_HOSTS = (
+    [host.strip() for host in allowed_hosts.split(",") if host.strip()]
+    if allowed_hosts
+    else ["localhost", "127.0.0.1"]
+)
 
 
 INSTALLED_APPS = [
@@ -32,6 +38,9 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 100,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly"
+    ],
 }
 
 LOGGING = {
@@ -131,7 +140,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-TINKOFF_TOKEN = ""
+TINKOFF_TOKEN = os.getenv("TINKOFF_TOKEN", "")
 
 """Celery Configuration Options"""
 CELERY_TIMEZONE = "Europe/Moscow"

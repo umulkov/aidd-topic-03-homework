@@ -1,0 +1,18 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+<title>Создать портфель</title>
+{% endblock %}
+
+{% block content %}
+<h1>Создать портфель</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label class="control-label" for="{{ form.name.id_for_label }}">Название</label>
+        {{ form.name }}
+        {{ form.name.errors }}
+    </div>
+    <button class="btn btn-primary" type="submit">Сохранить</button>
+</form>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+<title>{{ portfolio.name }}</title>
+{% endblock %}
+
+{% block content %}
+<h1>{{ portfolio.name }}</h1>
+
+<div class="row">
+    <div class="col-md-3"><strong>Текущая стоимость</strong><br>{{ total_value|floatformat:2 }}</div>
+    <div class="col-md-3"><strong>Себестоимость</strong><br>{{ total_cost|floatformat:2 }}</div>
+    <div class="col-md-3"><strong>P&amp;L</strong><br>{{ pnl|floatformat:2 }}</div>
+    <div class="col-md-3"><strong>P&amp;L%</strong><br>{% if pnl_percent is not None %}{{ pnl_percent|floatformat:2 }}%{% else %}—{% endif %}</div>
+</div>
+
+<h2>Позиции</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Тикер</th>
+            <th>Количество</th>
+            <th>Средняя цена покупки</th>
+            <th>Последняя цена</th>
+            <th>Стоимость</th>
+            <th>Себестоимость</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for position in positions %}
+        <tr>
+            <td>{{ position.share.ticker }}</td>
+            <td>{{ position.quantity }}</td>
+            <td>{{ position.avg_buy_price|floatformat:2 }}</td>
+            <td>{% if position.last_price is not None %}{{ position.last_price|floatformat:2 }}{% else %}—{% endif %}</td>
+            <td>{% if position.value is not None %}{{ position.value|floatformat:2 }}{% else %}—{% endif %}</td>
+            <td>{{ position.cost|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">Открытых позиций пока нет.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><a class="btn btn-primary" href="{% url 'dashboard:transaction_create' portfolio.pk %}">Добавить транзакцию</a></p>
+
+<h2>Транзакции</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Операция</th>
+            <th>Тикер</th>
+            <th>Количество</th>
+            <th>Цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.executed_at }}</td>
+            <td>{{ transaction.get_operation_display }}</td>
+            <td>{{ transaction.share.ticker }}</td>
+            <td>{{ transaction.quantity }}</td>
+            <td>{{ transaction.price|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">Транзакций пока нет.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
