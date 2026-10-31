@@ -1,0 +1,24 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}<title>Мои портфели</title>{% endblock %}
+
+{% block content %}
+<h2>Мои портфели</h2>
+<a href="{% url 'portfolio:create' %}" class="btn btn-primary mb-3">Создать портфель</a>
+{% if portfolios %}
+<table class="table table-striped">
+    <thead><tr><th>Название</th><th>Создан</th><th></th></tr></thead>
+    <tbody>
+    {% for p in portfolios %}
+        <tr>
+            <td><a href="{% url 'portfolio:detail' p.id %}">{{ p.name }}</a></td>
+            <td>{{ p.created_at }}</td>
+            <td><a href="{% url 'portfolio:detail' p.id %}" class="btn btn-sm btn-secondary">Открыть</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Портфелей пока нет.</p>
+{% endif %}
+{% endblock %}

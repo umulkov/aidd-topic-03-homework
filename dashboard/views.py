@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
+from config.settings import logger
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, View, UpdateView
 
@@ -14,7 +15,7 @@ class IsUserAuthenticatedMixin(UserPassesTestMixin):
 
     @staticmethod
     def handle_no_permission():
-        return redirect("dashboard:index")
+        return redirect("user:auth")
 
 
 class ShareListView(ListView):
@@ -29,12 +30,18 @@ class ShareListView(ListView):
 class ShareDetailView(View):
     @staticmethod
     def get(request, pk):
-        share = Share.objects.get(id=pk)
+        share = get_object_or_404(Share, id=pk)
+
+        try:
+            plot_div = get_graph(share)
+        except Exception as e:
+            logger.error(e)
+            plot_div = ""
 
         return render(
             request,
             "dashboard/detail.html",
-            {"plot_div": get_graph(share), "share": share},
+            {"plot_div": plot_div, "share": share},
         )
 
 

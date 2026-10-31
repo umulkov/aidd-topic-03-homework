@@ -8,4 +8,5 @@ def get_last_data(share):
         resp = client.market_data.get_last_prices(figi=[share.figi])
         resp = resp.last_prices.pop()
         logger.info(f"Get last data for share with id {share.id}")
-        return [resp.price.units, resp.time]
+        price = resp.price.units + (resp.price.nano / 1e9)
+        return [price, resp.time]

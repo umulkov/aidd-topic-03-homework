@@ -1,0 +1,80 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}<title>{{ portfolio.name }}</title>{% endblock %}
+
+{% block content %}
+<h2>{{ portfolio.name }}</h2>
+
+<div class="row mb-3">
+    <div class="col">
+        <strong>Стоимость:</strong> {{ portfolio.total_market_value }}
+    </div>
+    <div class="col">
+        <strong>P&L:</strong> {{ portfolio.total_pnl }} ({{ portfolio.total_pnl_percent|floatformat:2 }}%)
+    </div>
+    <div class="col">
+        <strong>Средняя цена:</strong> {{ portfolio.average_purchase_price|floatformat:4 }}
+    </div>
+</div>
+
+<h4>Позиции</h4>
+{% if holdings %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Тикер</th>
+            <th>Количество</th>
+            <th>Средняя цена</th>
+            <th>Последняя цена</th>
+            <th>Стоимость</th>
+            <th>P&L</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for h in holdings %}
+        <tr>
+            <td>{{ h.share.ticker }}</td>
+            <td>{{ h.quantity }}</td>
+            <td>{{ h.avg_price|floatformat:4 }}</td>
+            <td>{{ h.last_price }}</td>
+            <td>{{ h.market_value }}</td>
+            <td>{{ h.pnl }} ({{ h.pnl_percent|floatformat:2 }}%)</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Нет позиций.</p>
+{% endif %}
+
+<h4>Транзакции</h4>
+{% if transactions %}
+<table class="table table-striped">
+    <thead>
+        <tr><th>Дата</th><th>Тип</th><th>Акция</th><th>Кол-во</th><th>Цена</th></tr>
+    </thead>
+    <tbody>
+    {% for tx in transactions %}
+        <tr>
+            <td>{{ tx.created_at }}</td>
+            <td>{{ tx.get_transaction_type_display }}</td>
+            <td>{{ tx.share.ticker }}</td>
+            <td>{{ tx.quantity }}</td>
+            <td>{{ tx.price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Транзакций пока нет.</p>
+{% endif %}
+
+<h4>Добавить операцию</h4>
+<form method="post">
+    {% csrf_token %}
+    {{ transaction_form.as_p }}
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+
+<p class="mt-3"><a href="{% url 'portfolio:list' %}">К списку портфелей</a></p>
+{% endblock %}

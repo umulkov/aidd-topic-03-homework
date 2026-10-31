@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+
+    
+<title>Добавить инструмент</title>
+
+
+    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="/static/dashboard/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/dashboard/css/sticky-footer-navbar.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
+
+</head>
+<body class="d-flex flex-column h-100">
+
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/" class="nav-link px-2 link-secondary">Главная</a></li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            
+                <p>Привет, admin@example.com
+                <a href="/user/logout/" class="btn btn-primary">Выход</a>
+                </p>
+            
+
+        </div>
+    </header>
+</div>
+
+<main class="flex-shrink-0">
+    <div class="container">
+
+        
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrfmiddlewaretoken" value="WkSDxKe2WLzmtCWwsXiWrKMwqnr1ZmjeDY6xG76sem17j5t9tYaSYirmD2DyKKJG">
+            
+            
+
+
+    
+    <div id="div_id_figi" class="form-group has-error">
+        
+            <label for="id_figi"  class="control-label  requiredField">
+                Figi<span class="asteriskField">*</span>
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <input type="text" name="figi" value="TESTFIGI123" maxlength="255" class="textinput form-control" required aria-invalid="true" aria-describedby="id_figi_error" id="id_figi">
+                        
+                    
+
+
+    
+    
+        <p id="error_1_id_figi" class="help-block"><strong>Акция with this Figi already exists.</strong></p>
+    
+
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            
+
+
+    
+    <div id="div_id_isin" class="form-group">
+        
+            <label for="id_isin"  class="control-label  requiredField">
+                Isin<span class="asteriskField">*</span>
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <input type="text" name="isin" value="US0000000000" maxlength="255" class="textinput form-control" required id="id_isin">
+                        
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            
+
+
+    
+    <div id="div_id_name" class="form-group">
+        
+            <label for="id_name"  class="control-label  requiredField">
+                Наименование компании<span class="asteriskField">*</span>
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <input type="text" name="name" value="Test Company" maxlength="255" class="textinput form-control" required id="id_name">
+                        
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            
+
+
+    
+    <div id="div_id_ticker" class="form-group has-error">
+        
+            <label for="id_ticker"  class="control-label  requiredField">
+                Тикер<span class="asteriskField">*</span>
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <input type="text" name="ticker" value="TST" maxlength="10" class="textinput form-control" required aria-invalid="true" aria-describedby="id_ticker_error" id="id_ticker">
+                        
+                    
+
+
+    
+    
+        <p id="error_1_id_ticker" class="help-block"><strong>Акция with this Тикер already exists.</strong></p>
+    
+
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            
+
+
+    
+    <div id="div_id_currency" class="form-group">
+        
+            <label for="id_currency"  class="control-label  requiredField">
+                Валюта<span class="asteriskField">*</span>
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <input type="text" name="currency" value="usd" maxlength="20" class="textinput form-control" required id="id_currency">
+                        
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            
+
+
+    
+    <div id="div_id_uid" class="form-group has-error">
+        
+            <label for="id_uid"  class="control-label  requiredField">
+                Uid<span class="asteriskField">*</span>
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <input type="text" name="uid" value="11111111-2222-3333-4444-555555555555" maxlength="255" class="textinput form-control" required aria-invalid="true" aria-describedby="id_uid_error" id="id_uid">
+                        
+                    
+
+
+    
+    
+        <p id="error_1_id_uid" class="help-block"><strong>Акция with this Uid already exists.</strong></p>
+    
+
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            
+
+
+    
+    <div id="div_id_last_price" class="form-group">
+        
+            <label for="id_last_price"  class="control-label ">
+                Текущая цена
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <input type="number" name="last_price" step="any" class="numberinput form-control" id="id_last_price">
+                        
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            
+
+
+    
+    <div id="div_id_is_trend_high" class="form-group">
+        
+            <label for="id_is_trend_high"  class="control-label ">
+                Растет цена
+            </label>
+        
+
+        
+
+        
+
+        
+            
+                <div class="controls ">
+                        
+                        <select name="is_trend_high" class="nullbooleanselect form-control" id="id_is_trend_high">
+  <option value="unknown" selected>Unknown</option>
+
+  <option value="true">Yes</option>
+
+  <option value="false">No</option>
+
+</select>
+                        
+                    
+
+
+    
+
+
+
+
+    
+
+
+
+                </div>
+            
+        
+    </div>
+    
+
+
+            
+            <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Сохранить</button>
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+
+
+    </div>
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Главная</a></li>
+        </ul>
+        <p class="text-center text-muted">Investing</p>
+    </div>
+</footer>
+
+
+</body>
+</html>

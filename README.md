@@ -7,6 +7,10 @@ docker-compose -f docker-compose.yml up
 # TINKOFF_TOKEN указывается в config/settings.py
 
 # Первоначальная загрузка списка акций
+
+# Установка Tinkoff SDK (сломанные метаданные на PyPI)
+pip install -r requirements-sdk.txt --no-deps
+
 python manage.py add_shares
 
 # Celery Beat
